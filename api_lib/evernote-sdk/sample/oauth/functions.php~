@@ -58,7 +58,6 @@
                 'consumerSecret' => OAUTH_CONSUMER_SECRET,
                 'sandbox' => SANDBOX
             ));
-			
             $requestTokenInfo = $client->getRequestToken(getCallbackUrl());
             if ($requestTokenInfo) {
                 $_SESSION['requestToken'] = $requestTokenInfo['oauth_token'];
@@ -135,8 +134,6 @@
                 'consumerSecret' => OAUTH_CONSUMER_SECRET,
                 'sandbox' => SANDBOX
             ));
-
-		
             $accessTokenInfo = $client->getAccessToken($_SESSION['requestToken'], $_SESSION['requestTokenSecret'], $_SESSION['oauthVerifier']);
             if ($accessTokenInfo) {
                 $_SESSION['accessToken'] = $accessTokenInfo['oauth_token'];
