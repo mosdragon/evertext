@@ -1,0 +1,1 @@
+php setupDatabases.php
