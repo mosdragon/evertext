@@ -1,10 +1,11 @@
 <?php
 
-require_once(_DIR_."");
+require_once(_DIR_._DIR_.'/../config/config.php');
+require_once(_DIR_.'/../api_lib/twilio-php-master/Services/Twilio.php');
+
 function sendText($from, $to, $body) {
     global $config_twilio_sid, $config_twilio_token;
-    //require('/path/to/twilio-php/Services/Twilio.php');
-    require('/api_lib/twilio-php-master/Services/Twilio.php');
+    
     $sid = $config_twilio_sid; // Your Account SID from www.twilio.com/user/account
     $token = $config_twilio_token; // Your Auth Token from www.twilio.com/user/account
     $client = new Services_Twilio($sid, $token);
