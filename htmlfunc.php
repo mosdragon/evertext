@@ -1,6 +1,6 @@
 <?php
 // html functions
-
+require "config/config.php";
 function insertHeader($pageTitle, $pageID)
 {
 echo '<!DOCTYPE html>
