@@ -17,8 +17,6 @@ function sendText($from, $to, $body) {
       $body); // Body of the Message Sent
     }
 }
-
-
 /*
 Test Code:
 
