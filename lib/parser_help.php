@@ -7,6 +7,10 @@ function checkMsg($message, $parse) {
     else
     return false;
 }
+
+function removeChunk($message, $keyword) {
+    
+}
 // Add this to whichever php script you need this function in - require(__DIR__.DIRECTORY_SEPARATOR."parser_help.php")
 
 ?>
