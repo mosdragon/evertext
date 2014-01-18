@@ -1,7 +1,6 @@
 <?php
-
-require_once(_DIR_._DIR_.'/../config/config.php');
-require_once(_DIR_.'/../api_lib/twilio-php-master/Services/Twilio.php');
+require_once(__DIR__.'/../config/config.php');
+require_once(__DIR__.'/../api_lib/twilio-php-master/Services/Twilio.php');
 
 function sendText($from, $to, $body) {
     global $config_twilio_sid, $config_twilio_token;
@@ -11,20 +10,20 @@ function sendText($from, $to, $body) {
     $client = new Services_Twilio($sid, $token);
 
     // Loops through array of recipients and send the message.
-    for($x =0; $x<sizeOf($to); x++) {
+    for($x = 0; $x<sizeOf($to); $x++) {
         $message = $client->account->messages->sendMessage(
-        $from, // From a valid Twilio number: Pranav's Twilio #: 9149404409
-        $to[x], // Text this number
+        $from, // From a valid Twilio number. Pranav's Twilio #: 9149404409
+        $to[$x], // Text this number
       $body); // Body of the Message Sent
     }
 }
-
-//testing
+/*
+Test Code:
 
 $me = "9149404409";
 $them = "4043981208 6786567476";
-$msgArray = explode(" ", $them);
+$sendArray = explode(" ", $them);
 $body = "I am iron man. Don't deny it";
-
-sendText()
+sendText($me, $sendArray, $body);
+*/
 
