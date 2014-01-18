@@ -1,5 +1,5 @@
 <?php
-function sendText ($from, $to, $body)
+function sendText($from, $to, $body)
 
 // Install the library via PEAR or download the .zip file to your project folder.
 // This line loads the library
@@ -12,8 +12,7 @@ $token = "4020b1c25d6a320ad78560ae857be064"; // Your Auth Token from www.twilio.
 $client = new Services_Twilio($sid, $token);
 for($x =0; $x<sizeOf($to); x++) {
 $message = $client->account->messages->sendMessage(
-  $from, // From a valid Twilio number: Pranav's 9149404409
+  $from, // From a valid Twilio number: Pranav's Twilio #: 9149404409
   $to[x], // Text this number
-  $body
-);
+  $body); // Body of the Message Sent
 }
