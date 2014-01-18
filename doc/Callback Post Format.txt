@@ -1,0 +1,22 @@
+Example
+
+$_POST['AccountSid'] = "AC328e546c4fe88f49f3e767f7f7ee88e9";
+
+AccountSid: AC328e546c4fe88f49f3e767f7f7ee88e9
+MessageSid: SMee0ef16bd0b3f3adcd56b33b64a2c47a
+Body: More test
+ToZip: 30301
+ToCity: ATLANTA
+FromState: GA
+ToState: GA
+SmsSid: SMee0ef16bd0b3f3adcd56b33b64a2c47a
+To: +17704505340
+ToCountry: US
+FromCountry: US
+SmsMessageSid: SMee0ef16bd0b3f3adcd56b33b64a2c47a
+ApiVersion: 2010-04-01
+FromCity: ALPHARETTA
+SmsStatus: received
+NumMedia: 0
+From: +16786567476
+FromZip: 30005
