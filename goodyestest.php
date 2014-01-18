@@ -10,8 +10,10 @@ $sid = "ACb6da7e66ee47b598e53735fdc209bcd1"; // Your Account SID from www.twilio
 $token = "4020b1c25d6a320ad78560ae857be064"; // Your Auth Token from www.twilio.com/user/account
 
 $client = new Services_Twilio($sid, $token);
+for($x =0; $x<sizeOf($to); x++) {
 $message = $client->account->messages->sendMessage(
-  '9149404409', // From a valid Twilio number
-  '6786567476', // Text this number
-  "Hello yo!"
+  $from, // From a valid Twilio number: Pranav's 9149404409
+  $to[x], // Text this number
+  $body
 );
+}
