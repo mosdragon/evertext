@@ -44,7 +44,7 @@ class Client
     public function getRequestToken($callbackUrl)
     {
         $oauth = new \OAuth($this->consumerKey, $this->consumerSecret);
-
+		$oauth ->disableSSLChecks(); 
         return $oauth->getRequestToken($this->getEndpoint('oauth'), $callbackUrl);
     }
 
@@ -52,6 +52,7 @@ class Client
     {
         $oauth = new \OAuth($this->consumerKey, $this->consumerSecret);
         $oauth->setToken($oauthToken, $oauthTokenSecret);
+		$oauth ->disableSSLChecks(); 
         $accessToken= $oauth->getAccessToken($this->getEndpoint('oauth'), null, $oauthVerifier);
 
         $this->token = $accessToken['oauth_token'];
