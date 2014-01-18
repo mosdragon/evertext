@@ -5,7 +5,9 @@
 	//echo $id;
 	$id = 7;
 	$userID = 2;
-	leaveConversation($id, 1);
+	setUserEvernote($userID, "asdfhajkldsfh");
+	echo getUserEvernote($userID);
+	//leaveConversation($id, 1);
 	//leaveConversation($id, $userID);
 	//joinConversation($id, $userID );
 	//echo getUserName(1);

@@ -1,6 +1,48 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 	
+	
+	function getUserEvernote($id) {
+		global $db, $db_userTable;
+		try {
+			$data = array("id" => $id);
+			$selectQuery = $db->prepare("SELECT `evernote` FROM $db_userTable 
+											WHERE `id` = :id");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			
+			while($row = $selectQuery->fetch()) {
+				return $row["evernote"];
+			}
+			
+			return NULL;
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  
+		}
+	function setUserEvernote($id, $api) {
+		global $db, $db_userTable;
+		try {
+			
+			$data = array("id" => $id, "evernote" => $api);
+			
+			$updateQuery = $db->prepare("UPDATE $db_userTable SET `evernote` = :evernote
+											WHERE `id`=:id");  
+			$response = $updateQuery->execute($data);
+			
+			if($response == 1) {
+				return true;
+			} else {
+				echo $response;
+				return false;
+			}
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  			
+	}
+	
 	function setConversation($conversationID, $users) {
 		global $db, $db_consTable;
 		try {
