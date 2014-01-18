@@ -87,4 +87,4 @@ INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `authToken`,
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 ");
 
-echo $createQuery->execute($data);
+echo $createQuery->execute();
