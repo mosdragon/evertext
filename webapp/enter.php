@@ -11,23 +11,24 @@ function renderRegistration() {
       <div>
         <h1>Almost There</h1>
         <p>Looks like you need to complete registration. Complete this form and you're all set.</p>
-                <form id="register" action="handle.php" method="post">
+                <form id="register" action="handle_register.php" method="post">
         <div class="row marketing">
         <div class="col-md-4">
-                Name: <br />
+                
                 Phone Number: <br />
-                Email: <br />
                 Password: <br />
+                Email: <br />
+				Name: <br />
 
         </div>
         <div class="col-md-4">
+				<input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo $_POST["number"]; echo '"readonly="true';}?>" ><br />
+				<input type="password" name="pass"><br />
+				
                 <input type="text" name="name"><br />
-                
-                <input type="text" name="phone"><br />
-                
                 <input type="text" name="email"><br />
                 
-                <input type="password" name="pass"><br />
+                
 
                 <br /> 
     
