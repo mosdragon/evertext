@@ -11,12 +11,10 @@ function sendMessage($from, $to, $body) {
 	sendText($from, $users, $body);
 }
 function invite($phoner, $convoID, $groupNumber) {
-    $id = getUserID($phoner);
-    if ($id === false) {
-        newUser($phoner,"","","");
-    } else {
-        joinConversation($convoID, $id);
-    }
+    $id = getMakeID($phoner);
+
+    joinConversation($convoID, $id);
+
     sendText($groupNumber,array($phoner), "You have been added to group chat" . getConversationName($convoID) . "!!");
 }
 
