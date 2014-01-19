@@ -15,7 +15,7 @@
 //
 
 // Import the classes that we're going to be using
-use EDAM\Types\Data, EDAM\Types\Note, EDAM\Types\Resource, EDAM\Types\Notebook EDAM\Types\ResourceAttributes;
+use EDAM\Types\Data, EDAM\Types\Note, EDAM\Types\Resource, EDAM\Types\Notebook, EDAM\Types\ResourceAttributes;
 use EDAM\Error\EDAMUserException, EDAM\Error\EDAMErrorCode;
 use Evernote\Client;
 
@@ -74,7 +74,7 @@ if ($versionOK == 0) {
     exit(1);
 }
 
-
+$groupName = "groupss";
     $noteStore = $client->getNoteStore();
     $nameOfNotebook = "Evernote " . $groupName;
     $notebookGUID = "";
@@ -92,8 +92,11 @@ if ($versionOK == 0) {
         }
     }
 
+$timeStamp = "yoo";
+$messageBody = "somethignelsee";
+$hashHex = "23423";
     $note = new Note();
-    $note->title("text at " . $timeStamp);
+    $note->title = ("text at " . $timeStamp);
     $note->content =
         '<?xml version="1.0" encoding="UTF-8"?>' .
         '<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">' .
@@ -108,7 +111,7 @@ if ($versionOK == 0) {
     } else {
         //first create a new notebook
         $notebook = new Notebook();
-        $notebook->title = "Evernote " . $groupName;
+        $notebook->name = "Evernote " . $groupName;
         $notebook->defaultNotebook = true;
         $noteStore->createNotebook($notebook);
         $note->notebookGUID = $notebook->GUID;

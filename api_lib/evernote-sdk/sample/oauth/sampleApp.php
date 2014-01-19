@@ -25,7 +25,6 @@
     // Status variables
     $lastError = null;
     $currentStatus = null;
-	$oauth->disableSSLChecks(); 
     // Request dispatching. If a function fails, $lastError will be updated.
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
