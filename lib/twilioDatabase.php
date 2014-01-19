@@ -1,5 +1,21 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
+
+    function isUserRegistered ($number) {
+        $id = getUserID($number);
+        if ($id === false) {
+            return false;
+        } else {
+            $email = getEmail($number);
+            if ($email === false) {
+
+            }
+            $pass = getPassword($number);
+            if ($pass === false) {
+
+            }
+        }
+    }
 	
 	function getUserPhone($id) {
 		global $db, $db_userTable;
