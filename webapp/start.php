@@ -1,8 +1,8 @@
  <?php
  require_once 'htmlfunc.php';
  insertHeader("Welcome to EverText","1");
- insertNav("index");
  ?>
+  <body>
   <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
