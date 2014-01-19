@@ -1,10 +1,10 @@
  <?php
  require_once 'htmlfunc.php';
- insertHeader("Awaken Thyself | EverTexts");
-
+ insertHeader("Credentials | EverTexts");
+ insertNav("enter");
  ?>
 
-
+      <body>
       <div class="jumbotron">
         <h1>Hey You</h1>
         <p class="lead"> This is it. This is the start of a beautiful journey. No more need for group

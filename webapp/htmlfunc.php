@@ -32,25 +32,53 @@ function insertHeader($pageTitle) {
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+<?php
 
-      <div class="container">
+}
+
+function insertNav($active) { ?>
+    <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
+    
+    <?php 
+    if($active == "index") { ?>
+          <li class ="active"><a href="#">Home</a></li>
           <li><a href="enter.php">Enter</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="contact.php">Contact</a></li>
-        </ul>
+        </ul> <?php
+    }
+    if($active == "enter") { ?>
+          <li><a href="index.php">Home</a></li>
+          <li class ="active"><a href="#">Enter</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul> <?php
+    }
+    if($active == "about") { ?>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="enter.php">Enter</a></li>
+          <li class ="active"><a href="#">About</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul> <?php
+    }
+    if($active == "contact") { ?>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="enter.php">Enter</a></li>
+          <li><a href="about.php">About</a></li>
+          <li class ="active"><a href="#">Contact</a></li>
+        </ul> <?php
+    }
+        ?>
         <h3 class="text-muted">
           <img src="images/favicon.png" />
           EverTexts
         </h3>
-    </div>
-
-<?php
-
+    </div> <?php
 }
+
+
 function insertJavascript()
 {
 	?>
@@ -75,7 +103,9 @@ function insertFooter()
 	insertEndTags();
 ?>
   <div class="footer">
-    <p> Copyright &copy; EverTexts Team | MHack Winter 2014 | Georgia Tech</p>
+    <p> Copyright &copy; EverTexts Team | MHacks Winter 2014 | Powered by
+     <a href="http://getbootstrap.com">Twitter BootStrap</a>
+    </p>
   </div>
 
 <?php
