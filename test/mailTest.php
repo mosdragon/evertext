@@ -5,5 +5,5 @@
 	$email = "ashaw596@gmail.com";
 	$message = "test";
 	$subject = "test";
-	mailExport(2);
+	mailExport(1);
 ?>
