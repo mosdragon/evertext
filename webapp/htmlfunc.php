@@ -17,11 +17,14 @@ function insertHeader($pageTitle) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png">
+
+
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="dist/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="dist/css/additional.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,24 +39,25 @@ function insertHeader($pageTitle) {
 
 }
 function addModal() { ?>
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Enter EverTexts</h4>
               </div>
-              <div class="modal-body">
-                <form id="phone" action="enter.php" method="post">
+              <form id="phone" action="enter.php" method="post">
+              <div class="modal-body"> 
+                <h3>
                 Phone Number: <br/>
-                <input type="text" name="number"><br />
+                <input type="text" name="number"><br /></h3>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick ="$('#phone').submit()">Enter</button>
-              </form>
-
               </div>
+              </form>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -100,10 +104,9 @@ function insertNav($active) { ?>
         </ul> <?php
     }
         ?>
-        <h3 class="text-muted">
-          <img src="images/favicon.png" />
-          EverTexts
-        </h3>
+      <a href="index.php">
+          <img src="images/logo.png" id="hotSpot" />
+      </a>
     </div> <?php
 }
 

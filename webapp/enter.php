@@ -1,6 +1,7 @@
  <?php
  require_once 'htmlfunc.php';
  require_once(__DIR__."/../lib/twilioDatabase.php");
+  require_once(__DIR__."/../lib/twilio.php");
  $user = $_POST["number"];
 
 function renderRegistration() {
@@ -15,23 +16,15 @@ function renderRegistration() {
         <div class="row marketing">
         <div class="col-md-4">
                 
-                Phone Number: <br />
-                Password: <br />
-                Email: <br />
-				Name: <br />
 
         </div>
         <div class="col-md-4">
-				<input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo $_POST["number"]; echo '"readonly="true';}?>" ><br />
-				<input type="password" name="pass"><br />
-				
-                <input type="text" name="name"><br />
-                <input type="text" name="email"><br />
-                
-                
-
-                <br /> 
-    
+		<table cellpadding="10">
+		<tr><td>Phone Number: </td>	<td><input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo numberParse($_POST["number"]); echo '"readonly="true';}?>" ></td></tr>
+		<tr><td>Password: 	</td>		<td><input type="password" name="password"></td></tr>
+		<tr><td>Name:		</td>		<td><input type="text" name="name"></td></tr>
+		<tr><td>Email: 		</td>		<td><input type="text" name="email"></td></tr>
+		</table>
                 </div>
               </div> 
               <p> 
@@ -50,7 +43,7 @@ function renderLogin() {
       <div>
         <h1>Sweet!</h1>
         <p>Your account's already been set up. Finish logging in here.</p>
-                <form id="register" action="handle.php" method="post"> 
+                <form id="register" action="handle_register.php" method="post"> 
                 Password: 
                 <input type="password" name="pass"><br />
 
