@@ -5,6 +5,7 @@ define('NEW',"@new");
 define('INVITE',"@invite");
 define('LEAVE',"@leave");
 define('SAVE',"@save");
+define('NAME', "@name");
 define('LOGIN',"@login");
 	$body = $_POST['Body'];
 	$recipient = numberParse($_POST['To']);
@@ -62,6 +63,16 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             // add has left convo
         } else if (strpos($body, SAVE) !== false) {
             saveToEvernote($body, getConversationID($recipient), getUserID($sender));
+        } else if (strpos($body, NAME) !== false) {
+        $dawords = explode(" ", strstr($body, "@name"));
+        $thename = "default Name";
+        for ($af = 0; $af < sizeOf($dawords); $af ++ ) {
+            if ($dawords[$af] == "@new"){
+                $thename = $dawords[$af+1];
+                break;
+            }
+        }
+            setUserName(getUserID($sender), $thename);
         }
 		$inviteList = array();
         if (strpos($body, INVITE) !== false) {
