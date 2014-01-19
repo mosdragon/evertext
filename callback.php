@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__.'/lib/twilio.php');
+require_once(__DIR__.'/lib/twilioDatabase.php');
 define('NEW',"@new");
 define('INVITE',"@invite");
 define('LEAVE',"@leave");
@@ -13,15 +15,15 @@ define('LOGIN',"@login");
 
 //logiicccc
 //if statement for whether it is a central number
-if ($recipient == 9149404409 ) { // INSERT CENTRAL HERE
+if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 
     //if statement for whether it contains new
 	if (strpos($body, constant("NEW")) === false ) {
     //if(true){
         $to = array($sender);
         $invalidMssg = "sorry. no command found";
-        sendMessage($recipient, $to, $invalidMssg);
-    } else {    //does not contain new
+        sendText($recipient, $to, $invalidMssg);
+    } else {    //does contain new
        
 
     }
@@ -29,10 +31,17 @@ if ($recipient == 9149404409 ) { // INSERT CENTRAL HERE
 } else {    // is a group number
     if (strpos($body, "@") === false) {     // no commands
         $users = getConversationUsers (getConversationID($recipient));
-        if (($key = array_search($sender, $users)) !== false) {
+		var_dump($users);
+        if (isset($users)&&($key = array_search($sender, $users)) !== false) {
             unset($users[$key]);
         }
-        sendMessage($recipient, $users, $body);
+		
+		if(count($users)>0) {
+
+			sendText($recipient, $users, $body);
+		} else {
+			sendText($recipient, array($sender), "Get some friends. :(");
+		}
     } else {    // commands exist
         if (strpos($body, LEAVE) !== false) {
             leaveConversation(getConversationID($recipient), getUserID($sender) );

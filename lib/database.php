@@ -2,7 +2,7 @@
 	require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php");
 	
 	try { 
-		$db = new PDO("mysql:host=$db_server", $db_username, $db_password);
+		$db = new PDO("mysql:host=$db_server;dbname=$db_database", $db_username, $db_password);
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch(PDOException $e) {  
 		echo $e->getMessage();  

@@ -1,6 +1,5 @@
 <?php
-require(__DIR__.DIRECTORY_SEPARATOR."parser_help.php")
-
+function parse () {
 // Constants defined for the keyword functionality created for texts
 define('NEW',"@new");
 define('INVITE',"@invite");
@@ -27,6 +26,8 @@ for($x = 0, $x<sizeof($msgArray);x++) {
     elseif($msgArray[x] == SAVE) {
         saveToEvernote($msg, $groupName, $timeStamp, $authKey);
     } 
+}
+
 }
 
 ?>
