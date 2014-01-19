@@ -1,20 +1,9 @@
  <?php
  require_once 'htmlfunc.php';
- insertHeader("Welcome to EverTexts","1");
+ insertHeader("Welcome to EverTexts");
 
  ?>
-  <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="enter.php">Enter</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="contact.php">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">EverTexts
-        <img src="images/et_icon.png" />
-      </h3>
-      </div>
+  
 
       <div class="jumbotron">
         <h1>Hey You</h1>

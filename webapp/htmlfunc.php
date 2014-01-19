@@ -1,7 +1,7 @@
 <?php
 // html functions
 require __DIR__."\..\config\config.php";
-function insertHeader($pageTitle, $pageID) {
+function insertHeader($pageTitle) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@ function insertHeader($pageTitle, $pageID) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="images/et_icon.png">
+    <link rel="shortcut icon" href="images/favicon.png">
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 
@@ -32,17 +32,31 @@ function insertHeader($pageTitle, $pageID) {
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class = 
-    <?php
-    echo $pageID;
-    ?>
-    > 
+  <body>
+
+      <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="enter.php">Enter</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">
+          <img src="images/favicon.png" />
+          EverTexts
+        </h3>
+    </div>
+
 <?php
 
 }
 function insertJavascript()
 {
-	echo '<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>';
+	?>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js#sthash.A9QZfgQJ.dpuf">
+  </script>
+        <?php 
 }
 function insertEndTags()
 {
