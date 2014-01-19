@@ -81,7 +81,8 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             setUserName(getUserID($sender), $thename);
         }
 		if(strpos($body, "@list") !== false) {
-			$members = getConversationUsers($id);
+			$members = getConversationUsers($conversationID);
+			$tempString = "";
 			foreach($members as $member) {
 				$tempString = $tempString. ", " . getUserName($member);
 			}
