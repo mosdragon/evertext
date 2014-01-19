@@ -26,7 +26,7 @@
                 <h4 class="modal-title" id="myModalLabel">Enter EverTexts</h4>
               </div>
               <div class="modal-body">
-                <form id="phone" action="handle.php" method="post">
+                <form id="phone" action="enter.php" method="post">
                 Phone Number: <br/>
                 <input type="text" name="number"><br />
               </div>
