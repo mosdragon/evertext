@@ -34,3 +34,7 @@ table#information {
     float: none;
     margin: 0 auto;
 }
+#mixed {
+    font-size: 14pt;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
