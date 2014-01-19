@@ -139,6 +139,14 @@
 		}  			
 	}
 	
+    function getMakeID($phone) {
+        $exists = getUserID($phone);
+        if ($exists === false) {
+            newUser($phone,"","","");
+        } else {
+            return $exists;
+        }
+    }
 	
 	function getUserID($phone) {
 		global $db, $db_userTable;
