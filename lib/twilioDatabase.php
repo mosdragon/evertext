@@ -143,7 +143,7 @@
     function getMakeID($phone) {
         $exists = getUserID($phone);
         if ($exists === false) {
-            newUser($phone,"","","");
+             return newUsernewUser($phone,"","","");
         } else {
             return $exists;
         }
@@ -291,7 +291,7 @@
 							VALUES (:name, :email, :user, :password, :phone)");  			
 			$response = $insertQuery->execute($data);
 			if($response == 1) {
-				return true;
+				return $db -> lastInsertId();
 			} else {
 				echo $response;
 				return false;
