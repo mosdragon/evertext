@@ -17,25 +17,9 @@ $id = $_COOKIE["id"];
  insertHeader("My Account | EverTexts");
  insertNav("enter");
  ?>
-      <body>
-        <div>
-          <h2>Account Information:</h2>
-        </div> <br />
-        <div  data-spy="scroll" data-target=".navbar-example">
-        ...
-        <div class="navbar-example">
-          <ul class="nav nav-tabs">
-            <li>Message 1:</li>
-            <li>Message 1:</li>
-            <li>Message 1:</li>
-            <li>Message 1:</li>
-            <li>Message 1:</li>
-          </ul>
-        </div>
-        ...
-        
-          <div class="row marketing">
-      </div>
+
+ <body>
+  
 <?php
   insertFooter();
   insertEndTags();
