@@ -8,8 +8,8 @@ $id = $_COOKIE["id"];
 
   if (!getUserEvernote($id)) { ?>
     <h4>Uh-Oh</h4><br/>
-    <p> Looks like we need your authorization key to integrate EverNote with your account. </p>
-        
+    <p> Looks like we need your authorization key to integrate EverNote with your account. We've made it extremely
+      easy for you. Just <a href="">click here.</a> </p>
 
   <?php
   } 
@@ -19,15 +19,22 @@ $id = $_COOKIE["id"];
  ?>
       <body>
         <div>
-          <h2>Glad You Could Make It!
-          </h2>
-          </div>
+          <h2>Account Information:</h2>
+        </div> <br />
+        <div  data-spy="scroll" data-target=".navbar-example">
+        ...
+        <div class="navbar-example">
+          <ul class="nav nav-tabs">
+            <li>Message 1:</li>
+            <li>Message 1:</li>
+            <li>Message 1:</li>
+            <li>Message 1:</li>
+            <li>Message 1:</li>
+          </ul>
+        </div>
+        ...
+        
           <div class="row marketing">
-            <h4>Our Mission:</h4> <blockquote>
-        We're creating the best possible group chatting experience out there for everyone. No smartphones, apps
-        , or even internet connection needed. Initiate chats, invite friends, export the last message sent out to your
-        Evernote account
-        </blockquote>
       </div>
 <?php
   insertFooter();

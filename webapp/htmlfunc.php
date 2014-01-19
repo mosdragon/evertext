@@ -17,11 +17,14 @@ function insertHeader($pageTitle) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png">
+
+
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="dist/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="dist/css/additional.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -101,10 +104,9 @@ function insertNav($active) { ?>
         </ul> <?php
     }
         ?>
-        <h3 class="text-muted">
-          <img src="images/favicon.png" />
-          EverTexts
-        </h3>
+      <a href="index.php">
+          <img src="images/logo.png" id="hotSpot" />
+      </a>
     </div> <?php
 }
 
