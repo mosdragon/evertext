@@ -61,7 +61,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             leaveConversation(getConversationID($recipient), getUserID($sender) );
             // add has left convo
         } else if (strpos($body, SAVE) !== false) {
-            saveToEvernote($msg, $groupName, $timeStamp, $authKey);
+            saveToEvernote($body, getConversationID($recipient), getUserID($sender));
         }
 		$inviteList = array();
         if (strpos($body, INVITE) !== false) {
@@ -74,7 +74,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             }
 			$tempString = "";
 			foreach($inviteList as $person) {
-				$tempString = $tempString. ", " . getUserName($person). ;
+				$tempString = $tempString. ", " . getUserName($person);
 			}
 			$tempString = substr($tempString,2);
 			
@@ -84,7 +84,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 				$tempString = $inviteList;
 			}
 			
-			sendMessage($recipient, $users, $tempString);
+			sendText($recipient, $users, $tempString);
 			postMessage($conversationID, $senderID, $tempString);
 			
         }
