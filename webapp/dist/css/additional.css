@@ -12,5 +12,25 @@
     border-color: #000000;
     border-bottom: 2px;
     border-right: 2px;
-
+}
+table#information {
+    padding: 10px;
+}
+#prompt {
+    width: 30px;
+}
+#complete {
+    width: 200px;
+}
+#smallDrop {
+    display: block;
+   margin: 10px 0;
+   line-height: 22px;
+   content: " ";
+}
+#entry {
+    width: 250px;
+    line-height: 22px;
+    float: none;
+    margin: 0 auto;
 }

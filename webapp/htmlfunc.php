@@ -49,10 +49,10 @@ function addModal() { ?>
               </div>
               <form id="phone" action="enter.php" method="post">
               <div class="modal-body"> 
-                <h4 class="text-center">
-                Phone Number: <br/>
-                <input type="text" name="number"><br /></h4>
+                <div class="text-center">
+                <input type="text" name="number" class="form-control" placeholder="Phone Number" id="entry"> <br id="smallDrop"/>
               </div>
+            </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick ="$('#phone').submit()">Enter</button>
