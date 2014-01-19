@@ -481,7 +481,7 @@
 			}
 		}
 		return $string;
-	}
+	}	
 	
 	function getMessages($conversationID) {
 		global $db, $db_messTable;

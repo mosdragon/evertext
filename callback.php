@@ -80,7 +80,14 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         }
             setUserName(getUserID($sender), $thename);
         }
-		
+		if(strpos($body, "@list") !== false) {
+			$members = getConversationUsers($id);
+			foreach($members as $member) {
+				$tempString = $tempString. ", " . getUserName($member);
+			}
+			$tempString = substr($tempString,2);
+			sendText($recipient, array($sender), $tempString. " are in the conversation.");
+		}
 		if(strpos($body, "@mail") !== false) {
 			mailExport($senderID);
 		}
