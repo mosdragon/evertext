@@ -1,7 +1,7 @@
 <?php
 	require_once(__DIR__."/../lib/twilioDatabase.php");
-	if(isset($_POST["number"])){
-		$number = $_POST["number"];
+	if(isset($_POST["phone"])){
+		$phone = $_POST["phone"];
 	}
 	if(isset($_POST["password"])){
 		$password = $_POST["password"];
@@ -12,9 +12,9 @@
 	if(isset($_POST["email"])){
 		$email = $_POST["email"];
 	}
-	$id = getUserID($number);
+	$id = getUserID($phone);
 	if($id === false) {
-		newUser($number,$name,$email,$password);
+		newUser($phone,$name,$email,$password);
 	} else {
 		updateUser($id,$name,$email,$password);
 	}

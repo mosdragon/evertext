@@ -1,6 +1,7 @@
  <?php
  require_once 'htmlfunc.php';
  require_once(__DIR__."/../lib/twilioDatabase.php");
+  require_once(__DIR__."/../lib/twilio.php");
  $user = $_POST["number"];
 
 function renderRegistration() {
@@ -19,8 +20,8 @@ function renderRegistration() {
         </div>
         <div class="col-md-4">
 		<table cellpadding="10">
-		<tr><td>Phone Number: </td>	<td><input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo $_POST["number"]; echo '"readonly="true';}?>" ></td></tr>
-		<tr><td>Password: 	</td>		<td><input type="password" name="pass"></td></tr>
+		<tr><td>Phone Number: </td>	<td><input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo numberParse($_POST["number"]); echo '"readonly="true';}?>" ></td></tr>
+		<tr><td>Password: 	</td>		<td><input type="password" name="password"></td></tr>
 		<tr><td>Name:		</td>		<td><input type="text" name="name"></td></tr>
 		<tr><td>Email: 		</td>		<td><input type="text" name="email"></td></tr>
 		</table>
