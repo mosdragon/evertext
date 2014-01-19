@@ -1,6 +1,29 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
-
+	
+	function getNumber($userID) {
+		global $db;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `phone`, `id` FROM 'numbers' 
+											WHERE `inUse` = 0");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			$conversations = array();
+			if($row = $selectQuery->fetch()) {  		
+				$id = $row['id'];
+				$phone = $row['phone'];
+				return $phone;
+			} else {
+				return false;
+			}
+			 
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	
 	function login($phone, $password) {
 		$password = md5($password);
 		global $db, $db_userTable;
@@ -481,7 +504,7 @@
 			}
 		}
 		return $string;
-	}	
+	}
 	
 	function getMessages($conversationID) {
 		global $db, $db_messTable;

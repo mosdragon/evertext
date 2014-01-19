@@ -41,10 +41,15 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
     }
 
 } else {    // is a group number
+	$users = getConversationUsers (getConversationID($recipient));
 	$conversationID = getConversationID($recipient);
 	$senderID = getUserID($sender);
+	if($senderID === false || (isset($users)&&($key = array_search(getUserID($sender), $users)) == false)) {
+		$senderID = invite($sender, $conversationID, $recipient);
+	}
+	
     postMessage($conversationID , $senderID, $body);
-	$users = getConversationUsers (getConversationID($recipient));
+	
     if (strpos($body, "@") === false) {     // no commands
         
 		var_dump($users);
