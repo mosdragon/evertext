@@ -49,9 +49,9 @@ function addModal() { ?>
               </div>
               <form id="phone" action="enter.php" method="post">
               <div class="modal-body"> 
-                <h3>
+                <h4 class="text-center">
                 Phone Number: <br/>
-                <input type="text" name="number"><br /></h3>
+                <input type="text" name="number"><br /></h4>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
