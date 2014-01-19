@@ -14,8 +14,12 @@
 	}
 	$id = getUserID($number);
 	if($id === false) {
-	
+		newUser($number,$name,$email,$password);
+	} else {
+		updateUser($id,$name,$email,$password);
 	}
+	
+	echo '<META http-equiv="refresh" content="0;URL=slpash.php">';
 	
 ?>
 <script type="text/javascript">alert("Nice! You're all set. Continue to the home page now." </script>

@@ -4,6 +4,32 @@
 	function login($phone, $password) {
 		
 	}
+	
+	function updateUser($id,$name,$email,$password){
+		global $db, $db_userTable;
+		$phone = checkEmpty($phone);
+		$email = checkEmpty($email);
+		$name = checkEmpty($name);
+		$password = md5(checkEmpty($password));
+		
+		try {
+			$data = array( 'name' => $name, 'email' => $email,  
+								'password' => $password, 'phone' => $phone);
+			$updateQuery = $db->prepare("UPDATE $db_userTable SET `name` = :name, `email` = :email, `password` = :password
+												WHERE `phone` = :phone");
+			$response = $updateQuery->execute($data);
+			if($response == 1) {
+				return $db -> lastInsertId();
+			} else {
+				echo $response;
+				return false;
+			}
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	}
 	function setUserName($id, $name) {
 		global $db, $db_userTable;
 		try {
@@ -339,7 +365,7 @@
 		$phone = checkEmpty($phone);
 		$email = checkEmpty($email);
 		$name = checkEmpty($name);
-		$password = checkEmpty($password);
+		$password =md5(checkEmpty($password));
 		
 		try {
 			$data = array( 'name' => $name, 'email' => $email,  
@@ -361,7 +387,7 @@
 	
 	
 	function getMessages() {
-	
+		
 	}
 	
 	function postMessage($conversationID, $senderID, $message) {
