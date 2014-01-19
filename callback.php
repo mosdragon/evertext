@@ -7,8 +7,8 @@ define('LEAVE',"@leave");
 define('SAVE',"@save");
 define('LOGIN',"@login");
 	$body = $_POST['Body'];
-	$recipient = $_POST['To'];
-	$sender = $_POST['From'];
+	$recipient = numberParse($_POST['To']);
+	$sender = numberParse($_POST['From']);
 
 	$msgArray = explode(" ", $body);
 
