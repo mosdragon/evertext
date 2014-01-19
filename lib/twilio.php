@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../config/config.php');
 require_once(__DIR__.'/../api_lib/twilio-php-master/Services/Twilio.php');
 require_once(__DIR__."/twilioDatabase.php");
+require_once(__DIR__."/evernoteFunctions.php");
 
 function sendMessage($from, $to, $body) {
 	$users = array();
@@ -10,6 +11,11 @@ function sendMessage($from, $to, $body) {
 	}
 	sendText($from, $users, $body);
 }
+
+function saveToEvernote($message, $groupNam, $auth) {
+		makeNote($message,$groupNam,$auth);
+	}
+
 function invite($phoner, $convoID, $groupNumber) {
     $id = getMakeID($phoner);
 
