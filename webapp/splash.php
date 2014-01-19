@@ -31,15 +31,7 @@
     Here are all of your past messages from your current conversation.
     <div class="message" id="" style=""> 
 	<?php 
-		$conversations = getUserConversations($id);
-		$messages = array();
-		foreach ($conversations as $con) {
-			$messages = getMessages($con);
-
-			for($x=0; $x<sizeOf($messages[0]); $x++) {
-				echo "<div class='sender'>".$messages[0][$x]. ":</div><div class='mes'>". $messages[1][$x] . "<div/><br />";
-			}
-		}
+		echo export($id);
 		//$messages
 	?>
 

@@ -469,6 +469,20 @@
 			return false;
 		}  
 	}
+	
+	function export($id) {
+		$conversations = getUserConversations($id);
+		$messages = array();
+		foreach ($conversations as $con) {
+			$messages = getMessages($con);
+			$string = "";
+			for($x=0; $x<sizeOf($messages[0]); $x++) {
+				$string = $string."<div class='sender'>".$messages[0][$x]. ":</div><div class='mes'>". $messages[1][$x] . "<div/><br />";
+			}
+		}
+		return $string;
+	}
+	
 	function getMessages($conversationID) {
 		global $db, $db_messTable;
 		try {
