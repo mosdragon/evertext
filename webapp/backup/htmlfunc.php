@@ -2,6 +2,7 @@
 // html functions
 require __DIR__."\..\config\config.php";
 function insertHeader($pageTitle, $pageID) {
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@ function insertHeader($pageTitle, $pageID) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="images/et_icon.png">
+    <link rel="shortcut icon" href="http://getbootstrap.com/examples/jumbotron-narrow/../../docs-assets/ico/favicon.png">
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 
@@ -42,7 +43,9 @@ function insertHeader($pageTitle, $pageID) {
 }
 function insertJavascript()
 {
-	echo '<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>';
+	echo '<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/bootswatch.js"></script>';
 }
 function insertEndTags()
 {
