@@ -1,0 +1,16 @@
+#hotSpot {
+    height: 63px;
+    width: 156px;
+    opacity:1.0;
+    border: 0px;
+}
+#hotSpot:hover {
+    height: 63px;
+    width: 156px;
+    text-decoration: none;
+    opacity:0.45;
+    border-color: #000000;
+    border-bottom: 2px;
+    border-right: 2px;
+
+}
