@@ -282,12 +282,12 @@
 				} else if(empty($row["phone"])==false) {
 					return $row["phone"];
 				} else {
-					return "No phone number?";
+					return "Unknown";
 				}
 			}
 		}	catch(PDOException $e) {  
 			echo $e->getMessage();  
-			return false;
+			return "Unknown";
 		}  
 	}
 	
@@ -403,10 +403,6 @@
 	}
 	
 	
-	function getMessages($conversationID) {
-		
-	}
-	
 	function postMessage($conversationID, $senderID, $message) {
 		global $db, $db_messTable;
 		try {
@@ -424,6 +420,54 @@
 				echo $response;
 				return false;
 			}
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	function getAllUsers(){ 
+		global $db, $db_userTable;
+		try {
+			$selectQuery = $db->prepare("SELECT `id`, `name`, `email`, `phone` FROM $db_userTable");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			
+			while($row = $selectQuery->fetch()) {
+				if(empty($row["name"])==false) {
+					$users[$row["id"]] = $row["name"];
+				} else if(empty($row["email"])==false) {
+					$users[$row["id"]] = strstr($row["email"], "@", true);
+				} else if(empty($row["phone"])==false) {
+					$users[$row["id"]] = $row["phone"];
+				} else {
+					$users[$row["id"]] = "Unknown";
+				}
+			}
+			
+			return $users;
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	function getMessages($conversationID) {
+		global $db, $db_messTable;
+		try {
+			$users = getAllUsers();
+			$selectQuery = $db->prepare("SELECT * FROM $db_messTable 
+											WHERE `conversation` = :conversation");  
+			$data = array("conversation" => $conversationID);
+			
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			$messages = array();
+			$messages[0] = array();
+			$messages[1] = array();
+			while($row = $selectQuery->fetch()) {  
+				array_push($messages[1], $row["message"]);
+				array_push($messages[0], $users[$row["sender"]]);
+			}
+			return $messages;
 		} catch(PDOException $e) {  
 			echo $e->getMessage();  
 			return false;
