@@ -38,9 +38,9 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 		
 		if(count($users)>0) {
 
-			sendText($recipient, $users, $body);
+			sendMessage($recipient, $users, $body);
 		} else {
-			sendText($recipient, array($sender), "Get some friends. :(");
+			sendMessage($recipient, array($sender), "Get some friends. :(");
 		}
     } else {    // commands exist
         if (strpos($body, LEAVE) !== false) {
