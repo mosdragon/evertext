@@ -23,7 +23,7 @@ function renderRegistration() {
         <div class="col-md-4">
                 <input type="text" name="name"><br />
                 
-                <input type="text" name="number"><br />
+                <input type="text" name="phone"><br />
                 
                 <input type="text" name="email"><br />
                 
@@ -34,7 +34,7 @@ function renderRegistration() {
                 </div>
               </div> 
               <p> 
-              <button type="submit" class="btn btn-primary" onclick ="$('#phone').submit()">Complete Registration</button>
+      <button type="submit" class="btn btn-primary" onclick = "$('#register').submit();">Complete Registration</button>
               </p>
             </form>
       </div> 
