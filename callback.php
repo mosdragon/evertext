@@ -72,7 +72,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         $dawords = explode(" ", strstr($body, "@name"));
         $thename = "default Name";
         for ($af = 0; $af < sizeOf($dawords); $af ++ ) {
-            if ($dawords[$af] == "@new"){
+            if ($dawords[$af] == "@name"){
                 $thename = $dawords[$af+1];
                 break;
             }

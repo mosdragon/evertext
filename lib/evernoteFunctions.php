@@ -1,7 +1,7 @@
 
 
 <?php
-	//$id = 2;
+	$id = 2;
     /*
      * Copyright 2011-2012 Evernote Corporation.
      *
@@ -99,7 +99,7 @@
             $_SESSION['oauthVerifier'] = $_GET['oauth_verifier'];
             $currentStatus = 'Content owner authorized the temporary credentials';
 			
-			
+			getTokenCredentials();
             return TRUE;
         } else {
             // If the User clicks "decline" instead of "authorize", no verification code is sent
@@ -326,11 +326,12 @@
 
         return $client->getAuthorizeUrl($_SESSION['requestToken']);
     }
+	
+	//session_start();
+	
 	/*
-	session_start();
-	
-	
 	?>
+
 	<p>
             <a href="evernoteFunctions.php?action=reset">Click here</a> to start over
     </p>
@@ -377,4 +378,4 @@
 	else {
 		 ?>
                 <a href="evernoteFunctions.php?action=makeNote"> Click here</a> to make a note
-<?php } ?>
+<?php } */?>
