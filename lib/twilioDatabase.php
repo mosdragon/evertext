@@ -5,7 +5,7 @@
 		$password = md5($password);
 		global $db, $db_userTable;
 		try {
-			$data = array("id" => $id, "password" => $password);
+			$data = array("phone" => $phone, "password" => $password);
 			$selectQuery = $db->prepare("SELECT * FROM $db_userTable 
 											WHERE `phone` = :phone AND `password` = :password");  
 			$selectQuery->execute($data);
@@ -78,7 +78,7 @@
 			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
 			
 			while($row = $selectQuery->fetch()) {
-				return $row["email"];
+				if(!empty($row["email"])) return $row["email"];
 			}
 			
 			return false;

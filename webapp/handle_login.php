@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__."/../lib/twilioDatabase.php");
 if(isset($_POST["phone"])){
 		$phone = $_POST["phone"];
 	}
@@ -6,12 +7,14 @@ if(isset($_POST["password"])){
 	$password = $_POST["password"];
 }
 $id = login($phone,$password);
-
 if($id === false) {
 	echo"wrong login info";
 	echo '<META http-equiv="refresh" content="5;URL=index.php">';
 } else {
-setcookie("id", $id, time()+3600 * 24); 
+    setcookie("id", $id, time()+3600 * 24); 
+         session_unset(); 
+        session_destroy();
+    //echo $id;
 	echo '<META http-equiv="refresh" content="0;URL=splash.php">';
 }
 $given = $_POST["name"];

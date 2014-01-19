@@ -18,7 +18,10 @@
 	} else {
 		updateUser($id,$name,$email,$password);
 	}
-	
+	$id = getUserID($phone);
+	setcookie("id", $id, time()+3600 * 24); 
+		 session_unset(); 
+    	session_destroy();
 	echo '<META http-equiv="refresh" content="0;URL=splash.php">';
 	
 ?>
