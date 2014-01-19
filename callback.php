@@ -97,6 +97,10 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 		if(strpos($body, "@mail") !== false) {
 			mailExport($senderID);
 		}
+		if(strpos($body, "@helps") !== false) {
+			$tempString = "Commands: @leave to leave chat. @invite (phone #) to add people to chat. @name (name) sets  name in the group chat. @save and @mail saves to evernote and your email respectively if you setup you account data on the evetexts.com website.";
+			sendText($recipient, array($sender), $tempString);
+		}
 		
 		$inviteList = array();
         if (strpos($body, INVITE) !== false) {

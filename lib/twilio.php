@@ -21,7 +21,7 @@ function invite($phoner, $convoID, $groupNumber) {
 
     joinConversation($convoID, $id);
 
-    sendText($groupNumber,array($phoner), "You have been added to group chat " . getConversationName($convoID) . "!!");
+    sendText($groupNumber,array($phoner), "You have been added to group chat " . getConversationName($convoID) . ". Text @helps for a list of available commands.");
 	return $id;
 	
 }
