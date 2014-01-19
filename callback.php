@@ -34,7 +34,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         }
 		$groupPhone = 9149404409;
         createConversation($groupPhone,$groupname, getmakeID($sender)); 
-		sendText($groupPhone, $to, "Group ".$groupname. " created.");
+		sendText($groupPhone, array($sender), "Group ".$groupname. " created.");
 
     }
 
