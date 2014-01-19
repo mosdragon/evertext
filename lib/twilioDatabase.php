@@ -21,7 +21,26 @@
 			echo $e->getMessage();  
 		}  
 	}
-	
+	function getUserConversations($userID) {
+		global $db, $db_consTable;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `id` FROM $db_consTable 
+											WHERE `users` LIKE :id");  
+			$data = array("id" => "%,".$userID.",%");
+		
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			$conversations = array();
+			while($row = $selectQuery->fetch()) {  		
+				array_push($conversations, $row["id"]);
+			}
+			return $conversations;
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
 	function updateUser($id,$name,$email,$password){
 		global $db, $db_userTable;
 		$id = checkEmpty($id);
@@ -429,7 +448,7 @@
 		global $db, $db_userTable;
 		try {
 			$selectQuery = $db->prepare("SELECT `id`, `name`, `email`, `phone` FROM $db_userTable");  
-			$selectQuery->execute($data);
+			$selectQuery->execute();
 			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
 			
 			while($row = $selectQuery->fetch()) {
