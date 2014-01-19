@@ -199,7 +199,24 @@
 		}  
 		
 	}
-	
+	function getConversationName($id) {
+		global $db, $db_consTable;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `name` FROM $db_consTable 
+											WHERE `id` = :id");  
+			$data = array("id" => $id);
+		
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			while($row = $selectQuery->fetch()) {  		
+				return $row["name"];
+			}
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
 	function getConversationID($number) {
 		global $db, $db_consTable;
 		
@@ -274,6 +291,11 @@
 			echo $e->getMessage();  
 			return false;
 		}  
+	}
+	
+	
+	function getMessages() {
+	
 	}
 	
 	function postMessage($conversationID, $senderID, $message) {
