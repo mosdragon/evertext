@@ -1,6 +1,6 @@
  <?php
  require_once 'htmlfunc.php';
- insertHeader("Contact Information | EverTexts");
+ insertHeader("Contact | EverTexts");
  insertNav("contact");
  ?>
 
