@@ -5,11 +5,8 @@
  ?>
 
       <body>
-      <div>
-        <h2>Contacting the 
-        <img src="images/favicon.png"/>
-        team
-        </h2>
+        <div>
+        <h2> Contacting the EverTexts Team </h2>
         </div>
         <div class="row marketing">
         <div class="col-lg-6">
