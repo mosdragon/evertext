@@ -1,6 +1,25 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 	
+	function getUserPhone($id) {
+		global $db, $db_userTable;
+		try {
+			$data = array("id" => $id);
+			$selectQuery = $db->prepare("SELECT `phone` FROM $db_userTable 
+											WHERE `id` = :id");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			
+			while($row = $selectQuery->fetch()) {
+				return $row["phone"];
+			}
+			
+			return NULL;
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  
+	}
 	
 	function getUserEvernote($id) {
 		global $db, $db_userTable;
@@ -21,7 +40,7 @@
 		}	catch(PDOException $e) {  
 			echo $e->getMessage();  
 		}  
-		}
+	}
 	function setUserEvernote($id, $api) {
 		global $db, $db_userTable;
 		try {
@@ -121,6 +140,14 @@
 		}  			
 	}
 	
+    function getMakeID($phone) {
+        $exists = getUserID($phone);
+        if ($exists === false) {
+            newUser($phone,"","","");
+        } else {
+            return $exists;
+        }
+    }
 	
 	function getUserID($phone) {
 		global $db, $db_userTable;
@@ -181,7 +208,24 @@
 		}  
 		
 	}
-	
+	function getConversationName($id) {
+		global $db, $db_consTable;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `name` FROM $db_consTable 
+											WHERE `id` = :id");  
+			$data = array("id" => $id);
+		
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			while($row = $selectQuery->fetch()) {  		
+				return $row["name"];
+			}
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
 	function getConversationID($number) {
 		global $db, $db_consTable;
 		
@@ -256,6 +300,11 @@
 			echo $e->getMessage();  
 			return false;
 		}  
+	}
+	
+	
+	function getMessages() {
+	
 	}
 	
 	function postMessage($conversationID, $senderID, $message) {

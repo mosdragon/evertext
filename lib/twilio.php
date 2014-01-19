@@ -4,8 +4,32 @@ require_once(__DIR__.'/../api_lib/twilio-php-master/Services/Twilio.php');
 require_once(__DIR__."/twilioDatabase.php");
 
 function sendMessage($from, $to, $body) {
-	
+	$users = array();
+	foreach($to as $id) {
+		array_push($users, getUserPhone($id));
+	}
+	sendText($from, $users, $body);
 }
+function invite($phoner, $convoID, $groupNumber) {
+    $id = getUserID($phoner);
+    if ($id === false) {
+        newUser($phoner,"","","");
+    } else {
+        joinConversation($convoID, $id);
+    }
+    sendText($groupNumber,array($phoner), "You have been added to group chat" . getConversationName($convoID) . "!!");
+}
+
+//initial condition is that 
+//number starts with +1 and may or may not have dashes
+function numberParse($number) {
+    $number = preg_replace('/\D/', '', $number);
+    if (strlen($number) > 10) {
+        $number = substr($number, strlen($number) -10);
+    }
+    return $number;
+}
+
 function sendText($from, $to, $body) {
     global $config_twilio_sid, $config_twilio_token;
     
