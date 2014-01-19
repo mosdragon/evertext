@@ -74,7 +74,11 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             }
 			$tempString = "";
 			foreach($inviteList as $person) {
+<<<<<<< HEAD
 				$tempString = $tempString. ", " . getUserName($person) ;
+=======
+				$tempString = $tempString. ", " . getUserName($person);
+>>>>>>> 5b390cee6d10e4731cf327279423e4cd4fe2eac8
 			}
 			$tempString = substr($tempString,2);
 			
