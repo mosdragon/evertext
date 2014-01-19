@@ -75,7 +75,7 @@ function insertFooter()
 	insertEndTags();
 ?>
   <div class="footer">
-    <p> Copyright &copy; EverText Team | MHack Winter 2014 | Georgia Tech</p>
+    <p> Copyright &copy; EverTexts Team | MHack Winter 2014 | Georgia Tech</p>
   </div>
 
 <?php
