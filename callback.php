@@ -52,17 +52,22 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         }
 		
 		if(count($users)>0) {
-
-			sendMessage($recipient, $users, $body);
+			$tempString = getUserName($senderID) . ": ". $body;
+			sendMessage($recipient, $users, $tempString);
 		} else {
 			sendText($recipient, array($sender), "Get some friends. :(");
 		}
     } else {    // commands exist
         if (strpos($body, LEAVE) !== false) {
-            leaveConversation(getConversationID($recipient), getUserID($sender) );
-            // add has left convo
+            leaveConversation(getConversationID($recipient), $senderID);
+			$tempString = getUserName($senderID)." has left the conversation.";
+			sendMessage($recipient, $users, $tempString);
+			postMessage($conversationID, $senderID, $tempString);
         } else if (strpos($body, SAVE) !== false) {
+			
             saveToEvernote($body, getConversationID($recipient), getUserID($sender));
+			$tempString = getUserName($senderID) . ": ". $body;
+			sendMessage($recipient, $users, $tempString);
         } else if (strpos($body, NAME) !== false) {
         $dawords = explode(" ", strstr($body, "@name"));
         $thename = "default Name";
@@ -92,10 +97,10 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 			if(sizeOf($inviteList) > 1) {
 				$tempString = $tempString . " have been added to the group chat.";
 			}	else	{
-				$tempString = $inviteList;
+				$tempString = $tempString . " has been added to the group chat.";
 			}
 			
-			sendText($recipient, $users, $tempString);
+			sendMessage($recipient, $users, $tempString);
 			postMessage($conversationID, $senderID, $tempString);
 			
         }

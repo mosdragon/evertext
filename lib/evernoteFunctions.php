@@ -1,7 +1,7 @@
 
 
 <?php
-	
+	//$id = 2;
     /*
      * Copyright 2011-2012 Evernote Corporation.
      *
@@ -167,13 +167,15 @@
      *
      * @return boolean TRUE on success, FALSE on failure
      */
-    function makeNote($msg, $groupName, $authKey)
+    function makeNote($msg, $groupName, $everId)
     {
-		global $id;
+		global $id ;
+		
 		//Currently for testing
 		$messageBody = $msg;
 		$hasHex = "";
-		$id = $authKey;
+		
+		$id = $everId;
 		/*
 		$timeStamp = $message->timeStamp;
 		$messageBody = $message->body;
@@ -344,7 +346,7 @@
         } elseif ($action == 'accessToken') {
             getTokenCredentials();
         } elseif ($action == 'makeNote') {
-            makeNote("Test","Test","Test","Test");
+            makeNote("Test","Test",2);
 			
         } elseif ($action == 'reset') {
             resetSession();

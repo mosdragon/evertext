@@ -12,8 +12,8 @@ function sendMessage($from, $to, $body) {
 	sendText($from, $users, $body);
 }
 
-function saveToEvernote($message, $groupNam, $auth) {
-		makeNote($message,$groupNam,$auth);
+function saveToEvernote($message, $groupNam, $ever) {
+		makeNote($message,$groupNam,$ever);
 	}
 
 function invite($phoner, $convoID, $groupNumber) {
