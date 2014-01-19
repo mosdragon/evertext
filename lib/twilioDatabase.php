@@ -29,7 +29,7 @@
 			return false;
 		}  
 	}
-	}
+	
 	function setUserName($id, $name) {
 		global $db, $db_userTable;
 		try {
