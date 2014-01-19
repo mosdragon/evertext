@@ -1,6 +1,9 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 
+	function login($phone, $password) {
+		
+	}
 	function setUserName($id, $name) {
 		global $db, $db_userTable;
 		try {
