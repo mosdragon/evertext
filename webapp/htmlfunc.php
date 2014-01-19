@@ -35,7 +35,30 @@ function insertHeader($pageTitle) {
 <?php
 
 }
+function addModal() { ?>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Enter EverTexts</h4>
+              </div>
+              <div class="modal-body">
+                <form id="phone" action="enter.php" method="post">
+                Phone Number: <br/>
+                <input type="text" name="number"><br />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick ="$('#phone').submit()">Enter</button>
+              </form>
 
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <?php
+}
 function insertNav($active) { ?>
     <div class="container">
       <div class="header">
@@ -44,7 +67,9 @@ function insertNav($active) { ?>
     <?php 
     if($active == "index") { ?>
           <li class ="active"><a href="#">Home</a></li>
-          <li><a href="enter.php">Enter</a></li>
+          <!-- Modal -->
+          <li><a data-toggle="modal" href="#myModal">Enter</a></li>
+          <?php addModal(); ?>
           <li><a href="about.php">About</a></li>
           <li><a href="contact.php">Contact</a></li>
         </ul> <?php
@@ -58,14 +83,18 @@ function insertNav($active) { ?>
     }
     if($active == "about") { ?>
           <li><a href="index.php">Home</a></li>
-          <li><a href="enter.php">Enter</a></li>
+                   <!-- Modal -->
+          <li><a data-toggle="modal" href="#myModal">Enter</a></li>
+          <?php addModal(); ?>
           <li class ="active"><a href="#">About</a></li>
           <li><a href="contact.php">Contact</a></li>
         </ul> <?php
     }
     if($active == "contact") { ?>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="enter.php">Enter</a></li>
+          <li><a href="index.php">Home</a></li>         
+           <!-- Modal -->
+          <li><a data-toggle="modal" href="#myModal">Enter</a></li>
+          <?php addModal(); ?>
           <li><a href="about.php">About</a></li>
           <li class ="active"><a href="#">Contact</a></li>
         </ul> <?php
