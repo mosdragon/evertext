@@ -4,7 +4,11 @@ require_once(__DIR__.'/../api_lib/twilio-php-master/Services/Twilio.php');
 require_once(__DIR__."/twilioDatabase.php");
 
 function sendMessage($from, $to, $body) {
-	
+	$users = array();
+	foreach($to as $id) {
+		array_push($users, getUserPhone($id));
+	}
+	sendText($from, $users, $body);
 }
 function sendText($from, $to, $body) {
     global $config_twilio_sid, $config_twilio_token;
