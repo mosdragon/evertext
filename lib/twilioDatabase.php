@@ -48,6 +48,7 @@
 			
 			while($row = $selectQuery->fetch()) {
 				return $row["evernote"];
+				
 			}
 			
 			return NULL;
@@ -157,8 +158,9 @@
 	
     function getMakeID($phone) {
         $exists = getUserID($phone);
+		echo $exists."hi";
         if ($exists === false) {
-            newUser($phone,"","","") {
+             return newUser($phone,"","","");
         } else {
             return $exists;
         }
@@ -300,13 +302,13 @@
 		$password = checkEmpty($password);
 		
 		try {
-			$data = array( 'name' => $name, 'email' => $email, 'user' => $user, 
+			$data = array( 'name' => $name, 'email' => $email,  
 								'password' => $password, 'phone' => $phone);
-			$insertQuery = $db->prepare("INSERT INTO $db_userTable (`name`, `email`, `username`, `password`, `phone`) 
-							VALUES (:name, :email, :user, :password, :phone)");  			
+			$insertQuery = $db->prepare("INSERT INTO $db_userTable (`name`, `email`, `password`, `phone`) 
+							VALUES (:name, :email, :password, :phone)");  			
 			$response = $insertQuery->execute($data);
 			if($response == 1) {
-				return true;
+				return $db -> lastInsertId();
 			} else {
 				echo $response;
 				return false;
