@@ -13,6 +13,7 @@
 			
 			while($row = $selectQuery->fetch()) {
 				return $row["evernote"];
+				
 			}
 			
 			return NULL;
