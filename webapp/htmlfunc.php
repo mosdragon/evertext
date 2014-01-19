@@ -44,12 +44,12 @@ function addModal() { ?>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Enter EverTexts</h4>
               </div>
+              <form id="phone" action="enter.php" method="post">
               <div class="modal-body"> 
                 <h3>
                 Phone Number: <br/>
                 <input type="text" name="number"><br /></h3>
               </div>
-              <form id="phone" action="enter.php" method="post">
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick ="$('#phone').submit()">Enter</button>
