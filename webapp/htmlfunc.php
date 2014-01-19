@@ -47,7 +47,6 @@ function addModal() { ?>
               <div class="modal-body"> 
                 <h3>
                 Phone Number: <br/>
-                
                 <input type="text" name="number"><br /></h3>
               </div>
               <form id="phone" action="enter.php" method="post">
