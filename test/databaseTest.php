@@ -5,13 +5,20 @@
 	//echo $id;
 	$id = 7;
 	$userID = 2;
-	setUserEvernote($userID, "asdfhajkldsfh");
-	echo getUserEvernote($userID);
+	$number = "9149404409";
+	$name = "Pranav";
+	$owner = 2;
+	
+	newUser("9149404409","Pranav","pranavmkshenoy@gmail.com","schoolz");
+	createConversation($number, $name, $owner);
+	
+	//setUserEvernote($userID, "asdfhajkldsfh");
+	//echo getUserEvernote($userID);
 	//leaveConversation($id, 1);
 	//leaveConversation($id, $userID);
 	//joinConversation($id, $userID );
 	//echo getUserName(1);
 	//var_dump( getConversationUsers($id));
 	//postMessage(6, 3, "HELLO");
-	//newUser("4048893664","","ashaw596@gmail.com","school");
+	
 	?>
