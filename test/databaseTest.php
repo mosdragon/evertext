@@ -1,5 +1,5 @@
 <?php
-	require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."lib".DIRECTORY_SEPARATOR."twilioDatabase.php");
+	require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."lib".DIRECTORY_SEPARATOR."twilio.php");
 	
 	//$id = createConversation("4048893664", "EVERTEXT", "1");
 	//echo $id;
@@ -8,9 +8,9 @@
 	$number = "9149404409";
 	$name = "Pranav";
 	$owner = 2;
-	
-	newUser("9149404409","Pranav","pranavmkshenoy@gmail.com","schoolz");
-	createConversation($number, $name, $owner);
+	print numberParse("+16789876783");
+	//newUser("9149404409","Pranav","pranavmkshenoy@gmail.com","schoolz");
+	//createConversation($number, $name, $owner);
 	
 	//setUserEvernote($userID, "asdfhajkldsfh");
 	//echo getUserEvernote($userID);

@@ -142,7 +142,7 @@
     function getMakeID($phone) {
         $exists = getUserID($phone);
         if ($exists === false) {
-            newUser($phone,"","","") {
+            newUser($phone,"","","");
         } else {
             return $exists;
         }

@@ -25,7 +25,7 @@ function invite($phoner, $convoID, $groupNumber) {
 function numberParse($number) {
     $number = preg_replace('/\D/', '', $number);
     if (strlen($number) > 10) {
-        $number = substr($number, 10- strlen($number));
+        $number = substr($number, strlen($number) -10);
     }
     return $number;
 }
