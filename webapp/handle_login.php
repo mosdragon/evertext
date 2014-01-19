@@ -11,7 +11,8 @@ if($id === false) {
 	echo"wrong login info";
 	echo '<META http-equiv="refresh" content="5;URL=index.php">';
 } else {
-setcookie("id", $id, time()+3600 * 24); 
+    setcookie("id", $id, time()+3600 * 24); 
+    //echo $id;
 	echo '<META http-equiv="refresh" content="0;URL=splash.php">';
 }
 $given = $_POST["name"];

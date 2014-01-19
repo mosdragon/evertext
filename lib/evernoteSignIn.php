@@ -1,7 +1,3 @@
-
-	<p>
-            <a href="?action=reset">Click here</a> to start over
-    </p>
 	<?php
 	require_once __DIR__.'/evernoteFunctions.php';
 	session_start();
@@ -14,6 +10,6 @@
 	getTemporaryCredentials();
 	}
 	
-	function generateEvernoteButton() { ?>
-	<a href="<?php echo htmlspecialchars(getAuthorizationUrl()); ?>">Click here</a> to authorize the temporary credentials
-	<?php } ?>
+	function generateEvernoteButton() { 
+        return htmlspecialchars(getAuthorizationUrl());
+    } ?>
