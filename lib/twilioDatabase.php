@@ -1,6 +1,9 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 
+	function setUserName($id, $name) {
+	
+	}
     function isUserRegistered ($number) {
         $id = getUserID($number);
         if ($id === false) {
