@@ -2,7 +2,25 @@
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 
 	function setUserName($id, $name) {
-	
+		global $db, $db_userTable;
+		try {
+			
+			$data = array("id" => $id, "name" => $name);
+			
+			$updateQuery = $db->prepare("UPDATE $db_userTable SET `name` = :name
+											WHERE `id`=:id");  
+			$response = $updateQuery->execute($data);
+			
+			if($response == 1) {
+				return true;
+			} else {
+				echo $response;
+				return false;
+			}
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  			
 	}
 	function getEmail($id) {
 		global $db, $db_userTable;
