@@ -1,7 +1,7 @@
 	<?php
 	require_once __DIR__.'/evernoteFunctions.php';
 	session_start();
-	echo getUserEvernote($id);
+	//echo getUserEvernote($id);
 	//$access = getUserEvernote($id);
 	if (isset($_GET['action']) && $_GET['action'] == 'callback') {
         handleCallback();
@@ -10,6 +10,7 @@
 	getTemporaryCredentials();
 	}
 	
+    //echo "string";
 	function generateEvernoteButton() { 
         return htmlspecialchars(getAuthorizationUrl());
     } ?>

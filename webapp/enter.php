@@ -44,8 +44,12 @@ function renderLogin() {
         <h1>Sweet!</h1>
         <p>Your account's already been set up. Finish logging in here.</p>
                 <form id="register" action="handle_login.php" method="post"> 
+                  Phone Number: 
+                  <input type="text" name="phone" value = "<?php if(isset($_POST["number"])){echo numberParse($_POST["number"]); echo '"readonly="true';}?>" >
+<br />
+                  <br />
                 Password: 
-                <input type="password" name="pass"><br />
+                <input type="password" name="password"><br />
 
                 <br /> 
     

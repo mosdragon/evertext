@@ -1,7 +1,6 @@
 
 
 <?php
-	$id = 2;
     /*
      * Copyright 2011-2012 Evernote Corporation.
      *

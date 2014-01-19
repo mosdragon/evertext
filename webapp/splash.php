@@ -1,13 +1,17 @@
  <?php
+ $id = $_COOKIE["id"];
  require_once 'htmlfunc.php';
  require_once(__DIR__."/../lib/twilioDatabase.php");
  require_once(__DIR__."/../lib/evernoteSignIn.php");
-$id = $_COOKIE["id"];
+
 
  
  function wantAuthKey() {
-
-  if (!getUserEvernote($id)) { ?>
+  global $id;
+  $api = getUserEvernote($id);
+  //echo $id;
+  //echo $api;
+  if (empty($api)) { ?>
     <h4>Uh-Oh</h4><br/>
     <p> Looks like we need your authorization key to integrate EverNote with your account. We've made it extremely
       easy for you. Just <a href="<?php echo generateEvernoteButton(); ?>">click here.</a> </p>
@@ -18,7 +22,6 @@ $id = $_COOKIE["id"];
  insertHeader("My Account | EverTexts");
  insertNav("enter");
  wantAuthKey();
- echo $id;
  ?>
 
  <body>
