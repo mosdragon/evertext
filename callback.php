@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/lib/twilio.php');
 require_once(__DIR__.'/lib/twilioDatabase.php');
+require_once(__DIR__."/lib/mail.php");
 define('NEW',"@new");
 define('INVITE',"@invite");
 define('LEAVE',"@leave");
@@ -79,6 +80,11 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         }
             setUserName(getUserID($sender), $thename);
         }
+		
+		if(strpos($body, "@mail") !== false) {
+			mailExport($senderID);
+		}
+		
 		$inviteList = array();
         if (strpos($body, INVITE) !== false) {
             $dawords = explode(" ", strstr($body, INVITE));
