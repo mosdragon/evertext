@@ -2,21 +2,38 @@
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
 
 	function login($phone, $password) {
-		
+		$password = md5($password);
+		global $db, $db_userTable;
+		try {
+			$data = array("id" => $id, "password" => $password);
+			$selectQuery = $db->prepare("SELECT * FROM $db_userTable 
+											WHERE `phone` = :phone AND `password` = :password");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			
+			while($row = $selectQuery->fetch()) {
+				return $row["id"];
+			}
+			
+			return false;
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  
 	}
 	
 	function updateUser($id,$name,$email,$password){
 		global $db, $db_userTable;
-		$phone = checkEmpty($phone);
+		$id = checkEmpty($id);
 		$email = checkEmpty($email);
 		$name = checkEmpty($name);
 		$password = md5(checkEmpty($password));
 		
 		try {
 			$data = array( 'name' => $name, 'email' => $email,  
-								'password' => $password, 'phone' => $phone);
+								'password' => $password, 'id' => $id);
 			$updateQuery = $db->prepare("UPDATE $db_userTable SET `name` = :name, `email` = :email, `password` = :password
-												WHERE `phone` = :phone");
+												WHERE `id` = :id");
 			$response = $updateQuery->execute($data);
 			if($response == 1) {
 				return $db -> lastInsertId();

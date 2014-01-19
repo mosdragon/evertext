@@ -43,7 +43,7 @@ function renderLogin() {
       <div>
         <h1>Sweet!</h1>
         <p>Your account's already been set up. Finish logging in here.</p>
-                <form id="register" action="handle.php" method="post"> 
+                <form id="register" action="handle_register.php" method="post"> 
                 Password: 
                 <input type="password" name="pass"><br />
 
