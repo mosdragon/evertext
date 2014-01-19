@@ -32,6 +32,7 @@
 			
 			while($row = $selectQuery->fetch()) {
 				return $row["evernote"];
+				
 			}
 			
 			return NULL;
@@ -141,8 +142,9 @@
 	
     function getMakeID($phone) {
         $exists = getUserID($phone);
+		echo $exists."hi";
         if ($exists === false) {
-            newUser($phone,"","","");
+             return newUser($phone,"","","");
         } else {
             return $exists;
         }
@@ -290,7 +292,7 @@
 							VALUES (:name, :email, :user, :password, :phone)");  			
 			$response = $insertQuery->execute($data);
 			if($response == 1) {
-				return true;
+				return $db -> lastInsertId();
 			} else {
 				echo $response;
 				return false;

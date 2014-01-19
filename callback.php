@@ -7,8 +7,8 @@ define('LEAVE',"@leave");
 define('SAVE',"@save");
 define('LOGIN',"@login");
 	$body = $_POST['Body'];
-	$recipient = $_POST['To'];
-	$sender = $_POST['From'];
+	$recipient = numberParse($_POST['To']);
+	$sender = numberParse($_POST['From']);
 
 	$msgArray = explode(" ", $body);
 
@@ -32,7 +32,9 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
                 break;
             }
         }
-        createConversation($sender,$groupname, getmakeID($sender)); 
+		$groupPhone = 9149404409;
+        createConversation($groupPhone, $groupname, getmakeID($sender)); 
+		sendText($groupPhone, array($sender), "Group ".$groupname. " created.");
 
     }
 

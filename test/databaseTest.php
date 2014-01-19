@@ -8,7 +8,8 @@
 	$number = "9149404409";
 	$name = "Pranav";
 	$owner = 2;
-	print numberParse("+16789876783");
+	getMakeID(4048893665);
+	//print numberParse("+16789876783");
 	//newUser("9149404409","Pranav","pranavmkshenoy@gmail.com","schoolz");
 	//createConversation($number, $name, $owner);
 	
