@@ -1,9 +1,28 @@
  <?php
- require_once 'htmlfunc.php';
- insertHeader("Credentials | EverTexts");
- insertNav("enter");
- ?>
 
+function renderRegistration() {
+
+}
+
+function renderLogin() {
+
+}
+
+ require_once 'htmlfunc.php';
+ require_once(__DIR__."/../lib/twilioDatabase.php");
+ $user = $_POST["number"];
+ 
+ //handles phone number from index page
+ if (isUserRegistered($user)) {
+    renderRegistration();
+ } else {
+    renderLogin();
+ }
+ insertHeader("Credentials | EverTexts");
+
+isUserRegistered()
+
+ ?>
       <body>
       <div class="jumbotron">
         <h1>Hey You</h1>
