@@ -477,7 +477,7 @@
 			$messages = getMessages($con);
 			$string = "";
 			for($x=0; $x<sizeOf($messages[0]); $x++) {
-				$string = $string."<div class='sender'>".$messages[0][$x]. ":</div><div class='mes'>". $messages[1][$x] . "<div/><br />";
+				$string = $string."<div class='sender'>".$messages[0][$x]. ": ".date("Y-m-d H:i:s", $messages[2][$x])." </div><div class='mes'>". $messages[1][$x] . "<div/><br />";
 			}
 		}
 		return $string;
@@ -496,9 +496,11 @@
 			$messages = array();
 			$messages[0] = array();
 			$messages[1] = array();
+			$messages[2] = array();
 			while($row = $selectQuery->fetch()) {  
 				array_push($messages[1], $row["message"]);
 				array_push($messages[0], $users[$row["sender"]]);
+				array_push($messages[2], strtotime($row["postTime"]));
 			}
 			return $messages;
 		} catch(PDOException $e) {  
