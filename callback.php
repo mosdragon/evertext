@@ -84,7 +84,7 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
 				$tempString = $inviteList;
 			}
 			
-			sendText($recipient, $users, $tempString);
+			sendMessage($recipient, $users, $tempString);
 			postMessage($conversationID, $senderID, $tempString);
 			
         }
