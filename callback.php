@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/lib/twilio.php');
 require_once(__DIR__.'/lib/twilioDatabase.php');
+require_once(__DIR__."/lib/mail.php");
 define('NEW',"@new");
 define('INVITE',"@invite");
 define('LEAVE',"@leave");
@@ -40,10 +41,15 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
     }
 
 } else {    // is a group number
+	$users = getConversationUsers (getConversationID($recipient));
 	$conversationID = getConversationID($recipient);
 	$senderID = getUserID($sender);
+	if($senderID === false || (isset($users)&&($key = array_search(getUserID($sender), $users)) == false)) {
+		$senderID = invite($sender, $conversationID, $recipient);
+	}
+	
     postMessage($conversationID , $senderID, $body);
-	$users = getConversationUsers (getConversationID($recipient));
+	
     if (strpos($body, "@") === false) {     // no commands
         
 		var_dump($users);
@@ -79,6 +85,23 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
         }
             setUserName(getUserID($sender), $thename);
         }
+		if(strpos($body, "@list") !== false) {
+			$members = getConversationUsers($conversationID);
+			$tempString = "";
+			foreach($members as $member) {
+				$tempString = $tempString. ", " . getUserName($member);
+			}
+			$tempString = substr($tempString,2);
+			sendText($recipient, array($sender), $tempString. " are in the conversation.");
+		}
+		if(strpos($body, "@mail") !== false) {
+			mailExport($senderID);
+		}
+		if(strpos($body, "@helps") !== false) {
+			$tempString = "Commands: @leave to leave chat. @invite (phone #) to add people to chat. @name (name) sets  name in the group chat. @save and @mail saves to evernote and your email respectively if you setup you account data on the evetexts.com website.";
+			sendText($recipient, array($sender), $tempString);
+		}
+		
 		$inviteList = array();
         if (strpos($body, INVITE) !== false) {
             $dawords = explode(" ", strstr($body, INVITE));

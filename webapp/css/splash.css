@@ -1,0 +1,6 @@
+.message {
+	overflow:scroll; 
+	height:400px;
+	text-align:right;
+	padding:30px;
+}

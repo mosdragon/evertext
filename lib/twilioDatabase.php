@@ -1,6 +1,29 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
-
+	
+	function getNumber($userID) {
+		global $db;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `phone`, `id` FROM 'numbers' 
+											WHERE `inUse` = 0");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			$conversations = array();
+			if($row = $selectQuery->fetch()) {  		
+				$id = $row['id'];
+				$phone = $row['phone'];
+				return $phone;
+			} else {
+				return false;
+			}
+			 
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	
 	function login($phone, $password) {
 		$password = md5($password);
 		global $db, $db_userTable;
@@ -21,7 +44,26 @@
 			echo $e->getMessage();  
 		}  
 	}
-	
+	function getUserConversations($userID) {
+		global $db, $db_consTable;
+		
+		try {
+			$selectQuery = $db->prepare("SELECT `id` FROM $db_consTable 
+											WHERE `users` LIKE :id");  
+			$data = array("id" => "%,".$userID.",%");
+		
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			$conversations = array();
+			while($row = $selectQuery->fetch()) {  		
+				array_push($conversations, $row["id"]);
+			}
+			return $conversations;
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
 	function updateUser($id,$name,$email,$password){
 		global $db, $db_userTable;
 		$id = checkEmpty($id);
@@ -282,12 +324,12 @@
 				} else if(empty($row["phone"])==false) {
 					return $row["phone"];
 				} else {
-					return "No phone number?";
+					return "Unknown";
 				}
 			}
 		}	catch(PDOException $e) {  
 			echo $e->getMessage();  
-			return false;
+			return "Unknown";
 		}  
 	}
 	
@@ -403,10 +445,6 @@
 	}
 	
 	
-	function getMessages($conversationID) {
-		
-	}
-	
 	function postMessage($conversationID, $senderID, $message) {
 		global $db, $db_messTable;
 		try {
@@ -424,6 +462,70 @@
 				echo $response;
 				return false;
 			}
+		} catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	function getAllUsers(){ 
+		global $db, $db_userTable;
+		try {
+			$selectQuery = $db->prepare("SELECT `id`, `name`, `email`, `phone` FROM $db_userTable");  
+			$selectQuery->execute();
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC); 
+			
+			while($row = $selectQuery->fetch()) {
+				if(empty($row["name"])==false) {
+					$users[$row["id"]] = $row["name"];
+				} else if(empty($row["email"])==false) {
+					$users[$row["id"]] = strstr($row["email"], "@", true);
+				} else if(empty($row["phone"])==false) {
+					$users[$row["id"]] = $row["phone"];
+				} else {
+					$users[$row["id"]] = "Unknown";
+				}
+			}
+			
+			return $users;
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+			return false;
+		}  
+	}
+	
+	function export($id) {
+		$conversations = getUserConversations($id);
+		$messages = array();
+		foreach ($conversations as $con) {
+			$messages = getMessages($con);
+			$string = "";
+			for($x=0; $x<sizeOf($messages[0]); $x++) {
+				$string = $string."<div class='sender'>".$messages[0][$x]. ": ".date("Y-m-d H:i:s", $messages[2][$x])." </div><div class='mes'>". $messages[1][$x] . "<div/><br />";
+			}
+		}
+		return $string;
+	}
+	
+	function getMessages($conversationID) {
+		global $db, $db_messTable;
+		try {
+			$users = getAllUsers();
+			$selectQuery = $db->prepare("SELECT * FROM $db_messTable 
+											WHERE `conversation` = :conversation");  
+			$data = array("conversation" => $conversationID);
+			
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			$messages = array();
+			$messages[0] = array();
+			$messages[1] = array();
+			$messages[2] = array();
+			while($row = $selectQuery->fetch()) {  
+				array_push($messages[1], $row["message"]);
+				array_push($messages[0], $users[$row["sender"]]);
+				array_push($messages[2], strtotime($row["postTime"]));
+			}
+			return $messages;
 		} catch(PDOException $e) {  
 			echo $e->getMessage();  
 			return false;

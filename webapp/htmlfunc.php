@@ -1,7 +1,7 @@
 <?php
 // html functions
 require __DIR__."\..\config\config.php";
-function insertHeader($pageTitle) {
+function insertHeader($pageTitle, $css = "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ function insertHeader($pageTitle) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png">
-
+	
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
@@ -25,7 +25,7 @@ function insertHeader($pageTitle) {
     <!-- Custom styles for this template -->
     <link href="dist/css/jumbotron-narrow.css" rel="stylesheet">
     <link href="dist/css/additional.css" rel="stylesheet">
-
+	<?php if(isset($css)) echo $css; ?>
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 

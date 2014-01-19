@@ -19,7 +19,7 @@
   <?php
   } 
  }
- insertHeader("My Account | EverTexts");
+ insertHeader("My Account | EverTexts", '<link href="css/splash.css" rel="stylesheet">');
  insertNav("enter");
  wantAuthKey();
  ?>
@@ -29,7 +29,11 @@
   </h3> <br/>
   <p>
     Here are all of your past messages from your current conversation.
-    <div class="small"> 
+    <div class="message" id="" style=""> 
+	<?php 
+		echo export($id);
+		//$messages
+	?>
 
     </div>
   </p>
