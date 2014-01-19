@@ -12,7 +12,7 @@ if($id === false) {
 	echo '<META http-equiv="refresh" content="5;URL=index.php">';
 } else {
 setcookie("id", $id, time()+3600 * 24); 
-	echo '<META http-equiv="refresh" content="0;URL=slpash.php">';
+	echo '<META http-equiv="refresh" content="0;URL=splash.php">';
 }
 $given = $_POST["name"];
 ?>
