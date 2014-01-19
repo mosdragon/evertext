@@ -7,8 +7,8 @@ define('LEAVE',"@leave");
 define('SAVE',"@save");
 define('LOGIN',"@login");
 	$body = $_POST['Body'];
-	$recipient = $_POST['To'];
-	$sender = $_POST['From'];
+	$recipient = numberParse($_POST['To']);
+	$sender = numberParse($_POST['From']);
 
 	$msgArray = explode(" ", $body);
 
@@ -32,15 +32,19 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
                 break;
             }
         }
-        createConversation($sender,$groupname, getmakeID($sender)); 
+		$groupPhone = 9149404409;
+        createConversation($groupPhone, $groupname, getmakeID($sender)); 
+		sendText($groupPhone, array($sender), "Group ".$groupname. " created.");
 
     }
 
 } else {    // is a group number
 	$conversationID = getConversationID($recipient);
-    postMessage(getConversationID($recipient), getUserID($sender), $body);
+	$senderID = getUserID($sender);
+    postMessage($conversationID , $senderID, $body);
+	$users = getConversationUsers (getConversationID($recipient));
     if (strpos($body, "@") === false) {     // no commands
-        $users = getConversationUsers (getConversationID($recipient));
+        
 		var_dump($users);
         if (isset($users)&&($key = array_search(getUserID($sender), $users)) !== false) {
             unset($users[$key]);
@@ -65,11 +69,24 @@ if ($recipient == $config_central_twilio_number ) { // INSERT CENTRAL HERE
             for ($af = 0; $af < sizeOf($dawords); $af ++ ) {
                 if ($dawords[$af] == INVITE){
                     $person = $dawords[$af+1];
-					array_push($inviteList, $person);
-					invite($person, $conversationID, $recipient);
+					array_push($inviteList, invite($person, $conversationID, $recipient));
                 }
             }
-            // add __ has joined
+			$tempString = "";
+			foreach($inviteList as $person) {
+				$tempString = $tempString. ", " . getUserName($person). ;
+			}
+			$tempString = substr($tempString,2);
+			
+			if(sizeOf($inviteList) > 1) {
+				$tempString = $tempString . " have been added to the group chat.";
+			}	else	{
+				$tempString = $inviteList;
+			}
+			
+			sendMessage($recipient, $users, $tempString);
+			postMessage($conversationID, $senderID, $tempString);
+			
         }
 
     }
