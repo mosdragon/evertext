@@ -1,5 +1,37 @@
 <?php
 	require_once(__DIR__.DIRECTORY_SEPARATOR."database.php");
+
+	function getEmail($id) {
+		global $db, $db_userTable;
+		try {
+			$data = array("id" => $id);
+			$selectQuery = $db->prepare("SELECT `email` FROM $db_userTable 
+											WHERE `id` = :id");  
+			$selectQuery->execute($data);
+			$selectQuery->setFetchMode(PDO::FETCH_ASSOC);  
+			
+			while($row = $selectQuery->fetch()) {
+				return $row["email"];
+			}
+			
+			return false;
+			
+		}	catch(PDOException $e) {  
+			echo $e->getMessage();  
+		}  
+	}
+    function isUserRegistered ($number) {
+        $id = getUserID($number);
+        if ($id === false) {
+            return false;
+        } else {
+            $email = getEmail($id);
+            if ($email === false) {
+				return false;
+            }
+        }
+		return true;
+    }
 	
 	function getUserPhone($id) {
 		global $db, $db_userTable;

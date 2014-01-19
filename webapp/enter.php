@@ -1,47 +1,35 @@
  <?php
  require_once 'htmlfunc.php';
- insertHeader("Credentials | EverTexts");
- insertNav("enter");
+ require_once(__DIR__."/../lib/twilioDatabase.php");
+ $user = $_POST["number"];
+
+function renderRegistration() {
+  insertHeader("Registration | EverTexts");
+  insertNav("enter"); ?>
+    
+    <body>
+      <div>
+        <h1>Almost There</h1>
+        <p>Looks like you need to complete registration. Complete the form and you're all set.</p>
+        <form id="register" action="handle.php" method="post">
+          
+        </form>
+      </div> 
+    <?php
+}
+
+function renderLogin() {
+  insertHeader("Login | EverTexts");
+  insertNav("enter");
+}
+ //handles phone number from index page
+ if (isUserRegistered($user)) {
+    renderLogin();
+ } else {
+    renderRegistration();
+ }
+
  ?>
-
-      <body>
-      <div class="jumbotron">
-        <h1>Hey You</h1>
-        <p class="lead"> This is it. This is the start of a beautiful journey. No more need for group
-        texting apps, thumb-cramping copy-paste frenzies, or buried life-changing messages.
-        Initiate group chats. Export to EverNote &copy;. Take the world by storm. It's that easy!</p>
-
-        <p><a class="btn btn-lg btn-success" data-toggle="modal" href="#myModal" role="button">
-          Sign up today
-        </a></p>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                
-               <form action="welcome.php" method="post"> 
-
-              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" >
-                  Save changes
-                  </button>
-              </form>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-      </div>
-      
 
 <?php
   insertFooter();
